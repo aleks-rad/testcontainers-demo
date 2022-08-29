@@ -1,0 +1,10 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    favicon:
+      enabled: false
+
+integration:
+  bank-info-client:
+    url: http://localhost:49153
