@@ -15,6 +15,7 @@ public class MainPage {
     public final SelenideElement sendBtn = $(By.id("sendBtn"));
     public final SelenideElement bankNameLabel = $(By.id("bankNameLabel"));
     public final SelenideElement bankCodeLabel = $(By.id("bankCodeLabel"));
+    public final SelenideElement errorLabel = $(By.id("errorLabel"));
 
     public static MainPage open() {
         return Selenide.open("http://host.testcontainers.internal:8080", MainPage.class);

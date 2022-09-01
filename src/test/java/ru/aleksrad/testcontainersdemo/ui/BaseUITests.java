@@ -1,5 +1,6 @@
 package ru.aleksrad.testcontainersdemo.ui;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
@@ -42,6 +43,8 @@ public abstract class BaseUITests {
         browserContainer.withAccessToHost(true);
         browserContainer.start();
         WebDriverRunner.setWebDriver(browserContainer.getWebDriver());
+        Configuration.timeout = 7000;
+        Configuration.pageLoadTimeout = 5000;
 
         mockServerContainer = new MockServerContainer(DockerImageName.parse(MOCK_SERVER_IMAGE_NAME));
         mockServerContainer.withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
