@@ -8,6 +8,7 @@ import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,8 @@ import org.testcontainers.utility.DockerImageName;
 import ru.aleksrad.testcontainersdemo.config.TestConfig;
 
 import java.io.File;
+
+import static java.util.Objects.nonNull;
 
 @SpringBootTest
 @ContextConfiguration(classes = {TestConfig.class})
@@ -55,6 +58,17 @@ public abstract class BaseUITests {
         mockServerContainer.start();
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
+    }
+
+    @AfterAll
+    public static void cleanUp() {
+        if (nonNull(browserContainer)) {
+            browserContainer.stop();
+        }
+
+        if (nonNull(mockServerContainer)) {
+            mockServerContainer.stop();
+        }
     }
 
 }

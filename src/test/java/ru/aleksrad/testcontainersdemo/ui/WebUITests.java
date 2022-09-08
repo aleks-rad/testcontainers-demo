@@ -80,14 +80,14 @@ public class WebUITests extends BaseUITests {
         final String cardNumber = "4276000000000002";
 
         step("Установка моков", () -> {
-        new MockServerClient(mockServerContainer.getHost(), mockServerContainer.getServerPort())
-                .when(request()
-                                .withMethod("GET")
-                                .withPath("/bank-info")
-                                .withQueryStringParameter("cardNumber", cardNumber),
-                        Times.once())
-                .respond(response()
-                        .withStatusCode(404));
+            new MockServerClient(mockServerContainer.getHost(), mockServerContainer.getServerPort())
+                    .when(request()
+                                    .withMethod("GET")
+                                    .withPath("/bank-info")
+                                    .withQueryStringParameter("cardNumber", cardNumber),
+                            Times.once())
+                    .respond(response()
+                            .withStatusCode(404));
         });
 
         step("Ввод номера карты в поле и проверка результатов", () -> {
