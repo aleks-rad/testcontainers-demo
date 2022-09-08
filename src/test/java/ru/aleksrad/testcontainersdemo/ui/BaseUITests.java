@@ -2,10 +2,12 @@ package ru.aleksrad.testcontainersdemo.ui;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,6 +53,8 @@ public abstract class BaseUITests {
                 new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(MOCK_SERVER_PORT), new ExposedPort(1080)))
         ));
         mockServerContainer.start();
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
     }
 
 }

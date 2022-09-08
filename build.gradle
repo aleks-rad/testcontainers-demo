@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.7.3'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'io.qameta.allure' version '2.8.1'
 	id 'java'
 }
 
@@ -39,8 +40,17 @@ dependencies {
 	implementation 'com.github.docker-java:docker-java-core:3.2.13'
 	testImplementation 'org.testcontainers:mockserver:1.17.3'
 	implementation 'org.mock-server:mockserver-client-java:5.14.0'
+
+	testRuntimeOnly('io.qameta.allure:allure-junit5:2.14.0')
+	implementation 'io.qameta.allure:allure-selenide:2.13.6'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+allure {
+	version = '2.13.0'
+	autoconfigure = true
+	aspectjweaver = true
 }
