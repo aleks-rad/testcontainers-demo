@@ -1,5 +1,5 @@
-# testcontainers-demo
-Демо-приложение с применением Testcontainers для интеграционных автотестов
+# ui-testcontainers-demo
+Демо-приложение с применением Testcontainers для UI автотестов
 
 ### Используются следующие контейнеры:
 - BrowserWebDriverContainer (Selenium для UI тестирования)
